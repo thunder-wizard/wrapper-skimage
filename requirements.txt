@@ -1,0 +1,5 @@
+# Python 3.8
+argparse
+numpy
+matplotlib
+scikit-image

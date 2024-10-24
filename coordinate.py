@@ -5,12 +5,13 @@ import sys
 import json
 from matplotlib.widgets import Button
 
-if len(sys.argv) != 3:
-    print("Usage: python script_name.py <image_path1> <image_path2>")
+if len(sys.argv) != 4:
+    print("Usage: python script_name.py <image_path1> <image_path2> <index_tag>")
     sys.exit(1)
 
 image_path1 = sys.argv[1]
 image_path2 = sys.argv[2]
+index_tag = sys.argv[3]
 
 img1 = mpimg.imread(image_path1)
 img2 = mpimg.imread(image_path2)
@@ -60,8 +61,10 @@ def on_close(event):
         'coords1': coords1,
         'coords2': coords2
     }
-    with open('coordinates.json', 'w') as f:
-        json.dump(data, f)
+    with open(f'points/origin-{index_tag}.json', 'w') as f:
+        json.dump(coords1, f)
+    with open(f'points/target-{index_tag}.json', 'w') as f:
+        json.dump(coords2, f)
     print("Coordinates saved to coordinates.json")
 
 # Function to clear coordinates
